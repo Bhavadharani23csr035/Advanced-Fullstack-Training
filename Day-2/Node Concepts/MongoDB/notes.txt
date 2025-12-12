@@ -1,0 +1,167 @@
+MongoDB: 
+----------
+
+
+Insert Data: 
+-------------    
+    1.insertOne () 
+        Syntax: db.collectionName.insertOne ({
+            data...
+        })
+
+        Ex: 
+        db.student_details.insertOne(
+            {
+                name:"Ravi",
+                email:"ravi@gamil.com" ,
+                phone:"974561238"
+            }
+        )
+
+
+    2.insertMany()
+        Syntax: db.collectionName.insertMany ([{data1..} , {data2...} ,{data3...}])
+
+                Ex: db.student_details.insertMany(
+                     [
+                         {name:"ramu" , email:"ramu@gmail.com"},
+                         {name:"rani",email:'rani@gmail.com'},
+                         {name:"admin",email:"admin@gmail.com"}
+                        ]
+                    )
+
+
+Find data / readd data from collectionName: 
+-------------------------------------------
+
+        1. findOne()
+            ex:db.student_details.findOne()
+
+            i. filter: 
+                Syntax : 
+                        db.collectionName.findOne({filter condition})
+
+                        Ex: db.student_details.findOne({
+                                        name:'Ravi'
+                                        })
+
+            
+
+
+            ii. Projections : 
+                    Syntax:
+                        db.collectionName.findOne({filter condition} , {projection condition})
+
+                            display fields ->value 1 or true
+                            don't want to display -> value 0 or false
+
+
+                            Ex: db.student_details.find({},{_id:0, name:1})
+
+
+
+        2. find()- >read all details or documents
+            ex:db.student_details.find()
+
+            i. filter: 
+                Syntax : 
+                        db.collectionName.find({filter condition})
+
+                        Ex: db.student_details.find({
+                                        name:'Ravi'
+                                        })
+
+                        db.collectionName.find({filter condition})
+
+                        Ex: db.student_details.find({
+                                        name:'Ravi',
+                                        fee:90000
+                                        })
+
+
+            ii. Projections : 
+                    Syntax:
+                        db.collectionName.find({filter condition} , {projection condition})
+
+                            display fields ->value 1 or true
+                            don't want to display -> value 0 or false
+
+
+                            Ex: db.student_details.find({},{_id:0, name:1})
+
+
+    
+        3. Delete : 
+            1.deleteOne(): 
+                    Syntax:
+                        db.collectionName.deleteOne({filter condition} )
+
+
+                        Ex: 
+                        db.collectionName.deleteOne({name:"Ravi"} )
+
+            1.deleteMany(): 
+                    Syntax:
+                        db.collectionName.deleteMany({filter condition} )
+
+
+                        Ex: 
+                        db.collectionName.deleteMany({name:"Ravi"} )
+
+
+        4. Update : 
+
+                update operators : 
+                    1. $set
+                    2. $unset 
+                    3. $pop 
+                    4. $push 
+                    5. $inc 
+
+
+                    Syntax : 
+                        db.collectionName.updateOne({filter condition} ,{ updated query} )
+
+                        Ex 1:  
+                            db.student_details.updateOne(
+                                    {name:'ramu'},
+                                    {$set: {phone:"9874561230", collegename:"KEC" , branch:'CSE'}}
+                                )
+
+                        Ex 2 :
+                            db.student_details.updateOne(
+                                    {name:'Ramu Kumar'},
+                                    {$unset: {phone:""}}
+                                ) 
+
+                        Ex 3: 
+                        db.student_details.updateMany(
+                                    {fee:90000},
+                                    {$inc: {fee:-20000}}
+                                )
+                        Ex 4: 
+                        db.student_details.updateMany(
+                                    {fee:90000},
+                                    {$inc: {fee:30000}}
+                                )
+
+                        Ex 5: 
+                            db.student_details.updateMany(
+                                        {name:"Ramu Kumar"},
+                                        {$push:{skills:["java","puthon","ruby"]}}
+                                    )
+
+
+
+DataTypes : 
+------------
+
+    1. String 
+    2. Number
+    3. null
+    4. Array 
+    5. Object
+    6. boolean 
+    7. Function
+    8. ISOTime 
+    9. Date 
